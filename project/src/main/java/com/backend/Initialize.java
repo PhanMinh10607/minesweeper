@@ -6,40 +6,33 @@ import java.util.List;
 import java.util.Random;
 
 public class Initialize {
-    private int height;
-    private int width;
-    private int bombNumber;
     private Random random = new Random();
 
-    Initialize(int height, int width, int bombNumber){
-        this.height = height;
-        this.width = width;
-        this.bombNumber = bombNumber;
-        Grid.getIntance(height, width);
-        for (int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
-                Grid.setXY(i,j,0);
-                Grid.setOpen(i,j,false);
+    public Board createGrid(int height, int width, int bombNumber){
+        Board board = new Board(height, width, bombNumber);
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                board.setXY(i, j, 0);
+                board.setOpen(i, j, false);
             }
         }
+        board.resetMove();
+        //TODO: Notify to frontend
+        return board;
     }
 
-    public void firstClick(int initialX, int initialY){
-        for (int i = 0; i < bombNumber; i++){
-            int x = random.nextInt(height);
-            int y = random.nextInt(width);
+    public void firstClick(int initialX, int initialY, Board board){
+        for (int i = 0; i < board.getBombNumber(); i++){
+            int x = random.nextInt(board.getHeight());
+            int y = random.nextInt(board.getWidth());
             while ((x == initialX && y == initialY) ||
-                    Grid.getBombCoordinate().contains(new ArrayList<>(List.of(x,y)))){
-                x = random.nextInt(height);
-                y = random.nextInt(width);
+                    board.getBombCoordinate().contains(new ArrayList<>(List.of(x,y)))){
+                x = random.nextInt(board.getHeight());
+                y = random.nextInt(board.getWidth());
             }
-            Grid.addBombCoordinate(x,y);
+            board.addBombCoordinate(x,y);
         }
-        Logic.choose(initialX,initialY);
+        Logic.choose(initialX,initialY, board);
     }
 
-    // getters
-    public int getHeight(){return height;}
-    public int getWidth(){return width;}
-    public int getBombNumber() {return bombNumber;}
 }
