@@ -1,37 +1,54 @@
 package com.backend;
 
-import java.util.ArrayList;
+import com.Utility;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Initialize {
     private Random random = new Random();
 
-    public Board createGrid(int height, int width, int bombNumber){
+    public Board createBoard(int height, int width, int bombNumber){
         Board board = new Board(height, width, bombNumber);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                board.setXY(i, j, 0);
+                board.createCell(i,j);
                 board.setOpen(i, j, false);
             }
         }
         board.resetMove();
+        board.resetOpenedCell();
         //TODO: Notify to frontend
         return board;
     }
 
     public void firstClick(int initialX, int initialY, Board board){
+        Queue<int[]> bombPlace = new ArrayDeque<>();
         for (int i = 0; i < board.getBombNumber(); i++){
             int x = random.nextInt(board.getHeight());
             int y = random.nextInt(board.getWidth());
             while ((x == initialX && y == initialY) ||
-                    board.getBombCoordinate().contains(new ArrayList<>(List.of(x,y)))){
+                    board.getCoordinate(x,y) == -1){
                 x = random.nextInt(board.getHeight());
                 y = random.nextInt(board.getWidth());
             }
             board.addBombCoordinate(x,y);
+            bombPlace.offer(new int[]{x,y});
         }
+
+
+        // initialize board
+        while (!bombPlace.isEmpty()){
+            int[] cell = bombPlace.poll();
+            for (int i = -1; i <= 1; i++){
+                for (int j = -1; j <= 1; j++){
+                    int a = cell[0] + i;
+                    int b = cell[1] + j;
+                    if (!Utility.checkInBoard(a,b,board) || (i == 0 && j == 0) || board.getCoordinate(a,b) == -1) continue;
+                    board.increaseCellValue(a,b);
+                }
+            }
+        }
+
         Logic.choose(initialX,initialY, board);
     }
 
