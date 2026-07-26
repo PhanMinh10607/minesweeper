@@ -31,7 +31,7 @@ public class TerminalTest {
         int y = scanner.nextInt();
         initialize.firstClick(x, y, board);
         int move = 2;
-        while (board.getCoordinate(x,y) != -1){
+        while (board.getCoordinate(x,y) != -1 ){
             displayBoard(board);
             System.out.print("Move " + move + ": ");
             x = scanner.nextInt();
@@ -55,6 +55,5 @@ public class TerminalTest {
             }
             System.out.println();
         }
-        System.out.println(board.getOpenedCellNumber());
     }
 }

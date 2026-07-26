@@ -8,14 +8,14 @@ import java.util.Queue;
 
 public class Logic {
 
+
+
     public static void choose(int x, int y, Board board){
         if (!Utility.checkInBoard(x,y,board) ||
                 board.checkOpen(x,y)){
             invalidMoveHandle();
         }
-        if (board.getHeight() * board.getWidth() - board.getBombNumber() == board.getOpenedCellNumber()){
-            winHandle();
-        }
+
         if (board.getCoordinate(x,y) != -1){
             safeClicked(x,y,board);
         }
@@ -43,9 +43,9 @@ public class Logic {
         // travel and open adjacent cells
         Queue<int[]> q = new ArrayDeque<>();
         q.offer(new int[]{x,y});
+        board.setOpen(x,y,true);
         while (!q.isEmpty()){
             int[] cell = q.poll();
-            board.setOpen(cell[0],cell[1],true);
             board.increaseOpenedCell();
             for (int i = -1; i <= 1; i++){
                 for (int j = -1; j < 1; j++){
@@ -57,8 +57,12 @@ public class Logic {
                         continue;
                     }
                     q.offer(new int[]{a,b});
+                    board.setOpen(a,b,true);
                 }
             }
+        }
+        if (board.getHeight() * board.getWidth() - board.getBombNumber() == board.getOpenedCellNumber()){
+            winHandle();
         }
         //TODO: notify to frontend
     }
