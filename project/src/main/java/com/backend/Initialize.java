@@ -1,13 +1,15 @@
 package com.backend;
 
 import com.Utility;
+import com.exceptions.InvalidBombNumber;
 
 import java.util.*;
 
 public class Initialize {
     private Random random = new Random();
 
-    public Board createBoard(int height, int width, int bombNumber){
+    public Board createBoard(int height, int width, int bombNumber) {
+        if (bombNumber <= 0 || bombNumber >= height*width) {throw new InvalidBombNumber();}
         Board board = new Board(height, width, bombNumber);
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -27,7 +29,7 @@ public class Initialize {
             int x = random.nextInt(board.getHeight());
             int y = random.nextInt(board.getWidth());
             while ((x == initialX && y == initialY) ||
-                    board.getCoordinate(x,y) == -1){
+                    board.isBomb(x,y)){
                 x = random.nextInt(board.getHeight());
                 y = random.nextInt(board.getWidth());
             }
@@ -43,7 +45,7 @@ public class Initialize {
                 for (int j = -1; j <= 1; j++){
                     int a = cell[0] + i;
                     int b = cell[1] + j;
-                    if (!Utility.checkInBoard(a,b,board) || (i == 0 && j == 0) || board.getCoordinate(a,b) == -1) continue;
+                    if (!Utility.checkInBoard(a,b,board) || (i == 0 && j == 0) || board.isBomb(i,j)) continue;
                     board.increaseCellValue(a,b);
                 }
             }

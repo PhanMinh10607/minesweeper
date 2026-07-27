@@ -1,31 +1,24 @@
 package com.backend;
 
 import com.Utility;
+import com.exceptions.InvalidMove;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Queue;
 
 public class Logic {
-
-
-
     public static void choose(int x, int y, Board board){
         if (!Utility.checkInBoard(x,y,board) ||
                 board.checkOpen(x,y)){
-            invalidMoveHandle();
+            throw new InvalidMove();
         }
 
-        if (board.getCoordinate(x,y) != -1){
+        if (!board.isBomb(x,y)){
             safeClicked(x,y,board);
         }
         else{
             bombClicked();
         }
-    }
-
-    public static void invalidMoveHandle(){
-        System.out.println("Invalid move");
     }
 
     public static void winHandle(){
@@ -53,7 +46,7 @@ public class Logic {
                     int b = cell[1]+j;
                     if (!Utility.checkInBoard(a,b,board) ||
                             board.checkOpen(a,b) ||
-                            board.getCoordinate(a,b) == -1){
+                            board.isBomb(a,b)){
                         continue;
                     }
                     q.offer(new int[]{a,b});

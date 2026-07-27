@@ -47,6 +47,10 @@ public class Board {
          board[x][y]++;
     }
 
+    public boolean isBomb(int x, int y){
+         return board[x][y] == -1;
+    }
+
     //getters
 
     public boolean checkOpen(int x, int y){return open[x][y];}

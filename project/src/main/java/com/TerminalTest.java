@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TerminalTest {
@@ -18,28 +19,36 @@ public class TerminalTest {
         Scanner scanner = new Scanner(System.in);
 
         int height, width, bombNumber;
-        height = scanner.nextInt();
-        width = scanner.nextInt();
-        bombNumber = scanner.nextInt();
 
-        Initialize initialize = new Initialize();
+        try {
+            height = scanner.nextInt();
+            width = scanner.nextInt();
+            bombNumber = scanner.nextInt();
 
-        Board board = initialize.createBoard(height, width, bombNumber);
-        System.out.print("Move 1: ");
+            Initialize initialize = new Initialize();
 
-        int x = scanner.nextInt();
-        int y = scanner.nextInt();
-        initialize.firstClick(x, y, board);
-        int move = 2;
-        while (board.getCoordinate(x,y) != -1 ){
-            displayBoard(board);
-            System.out.print("Move " + move + ": ");
-            x = scanner.nextInt();
-            y = scanner.nextInt();
-            Logic.choose(x,y,board);
-            move++;
+            Board board = initialize.createBoard(height, width, bombNumber);
+            System.out.print("Move 1: ");
 
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            initialize.firstClick(x, y, board);
+            int move = 2;
+            while (board.getCoordinate(x,y) != -1 ){
+                displayBoard(board);
+                System.out.print("Move " + move + ": ");
+                x = scanner.nextInt();
+                y = scanner.nextInt();
+                Logic.choose(x,y,board);
+                move++;
+
+            }
+        }catch (InputMismatchException e) {
+            System.out.println("you must type again");
+        }finally {
+            scanner.close();
         }
+
     }
 
     public static void displayBoard(Board board) {
