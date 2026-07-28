@@ -44,7 +44,7 @@ public class TerminalTest {
     public static void displayBoard(Board board) {
         for (int i = 0; i < board.getHeight(); i++) {
             for (int j = 0; j < board.getWidth(); j++) {
-                if (!board.checkOpen(i, j)) {
+                if (!board.isOpened(i, j)) {
                     System.out.print("xx ");
                 } else if (board.isBomb(i, j)) {
                     System.out.print("-1 ");
