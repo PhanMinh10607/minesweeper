@@ -1,14 +1,9 @@
 package com;
 
-import com.backend.Board;
-import com.backend.Initialize;
-import com.backend.Logic;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import com.model.Board;
+import com.service.Initialize;
+import com.service.Logic;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,13 +23,13 @@ public class TerminalTest {
             Initialize initialize = new Initialize();
 
             Board board = initialize.createBoard(height, width, bombNumber);
-            System.out.print("Move 1: ");
+            System.out.print("Move " + board.getMove() + ": ");
 
             int x = scanner.nextInt();
             int y = scanner.nextInt();
             initialize.firstClick(x, y, board);
             int move = 2;
-            while (board.getCoordinate(x,y) != -1 ){
+            while (!board.isBomb(x,y)){
                 displayBoard(board);
                 System.out.print("Move " + move + ": ");
                 x = scanner.nextInt();
@@ -56,10 +51,10 @@ public class TerminalTest {
             for (int j = 0; j < board.getWidth(); j++) {
                 if (!board.checkOpen(i, j)) {
                     System.out.print("xx ");
-                } else if (board.getCoordinate(i, j) == -1) {
+                } else if (board.isBomb(i, j)) {
                     System.out.print("-1 ");
                 } else {
-                    System.out.print("0" + board.getCoordinate(i, j) + " ");
+                    System.out.print("0" + board.getValue(i, j) + " ");
                 }
             }
             System.out.println();

@@ -1,7 +1,8 @@
-package com.backend;
+package com.service;
 
 import com.Utility;
 import com.exceptions.InvalidMove;
+import com.model.Board;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

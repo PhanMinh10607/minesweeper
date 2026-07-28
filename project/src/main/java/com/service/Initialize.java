@@ -1,7 +1,8 @@
-package com.backend;
+package com.service;
 
 import com.Utility;
 import com.exceptions.InvalidBombNumber;
+import com.model.Board;
 
 import java.util.*;
 
@@ -11,14 +12,6 @@ public class Initialize {
     public Board createBoard(int height, int width, int bombNumber) {
         if (bombNumber <= 0 || bombNumber >= height*width) {throw new InvalidBombNumber();}
         Board board = new Board(height, width, bombNumber);
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                board.createCell(i,j);
-                board.setOpen(i, j, false);
-            }
-        }
-        board.resetMove();
-        board.resetOpenedCell();
         //TODO: Notify to frontend
         return board;
     }
@@ -33,7 +26,7 @@ public class Initialize {
                 x = random.nextInt(board.getHeight());
                 y = random.nextInt(board.getWidth());
             }
-            board.addBombCoordinate(x,y);
+            board.setBomb(x,y);
             bombPlace.offer(new int[]{x,y});
         }
 

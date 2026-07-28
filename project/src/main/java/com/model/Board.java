@@ -1,4 +1,4 @@
-package com.backend;
+package com.model;
 
 import java.util.*;
 
@@ -9,8 +9,7 @@ public class Board {
     private int height = 10;
     private int width = 10;
     private int bombNumber = 20;
-    private int[][] board;
-    private boolean[][] open;
+    private Cell[][] board;
     private int move;
     private int openedCellNumber;
     private Queue<int[]> bombCoordinate = new ArrayDeque<>();
@@ -19,20 +18,21 @@ public class Board {
         this.height = height;
         this.width = width;
         this.bombNumber = bombNumber;
-        this.board = new int[height][width];
-        this.open = new boolean[height][width];
+        this.board = new Cell[height][width];
+        for (int i = 0; i < height; i++){
+            for (int j = 0; j < width; j++){
+                board[i][j] = new Cell();
+            }
+        }
+        resetMove();
+        resetOpenedCell();
     }
-
-    public void createCell(int x, int y){
-        board[x][y] = 0;
-    }
-    public void addBombCoordinate(int x, int y){
-        board[x][y] = -1;
-        bombCoordinate.add(new int[]{x,y});
+    public void setBomb(int x, int y){
+        board[x][y].setValue(-1);
     }
 
     public void setOpen(int x, int y, boolean value){
-        open[x][y] = value;
+        board[x][y].setOpened(value);
     }
 
     public void resetMove(){move = 0;}
@@ -44,20 +44,19 @@ public class Board {
          openedCellNumber++;
     }
     public void increaseCellValue(int x, int y){
-         board[x][y]++;
+         board[x][y].setValue(board[x][y].getValue()+1);
     }
 
     public boolean isBomb(int x, int y){
-         return board[x][y] == -1;
+         return board[x][y].getValue() == -1;
     }
-
+    public boolean checkOpen(int x, int y){return board[x][y].getOpened();}
     //getters
 
-    public boolean checkOpen(int x, int y){return open[x][y];}
-    public int getCoordinate(int x, int y){return board[x][y];}
-    public Queue<int[]> getBombCoordinate(){return bombCoordinate;}
+    public int getMove(){return move;}
     public int getHeight(){return height;}
     public int getWidth(){return width;}
     public int getBombNumber(){return bombNumber;}
     public int getOpenedCellNumber(){return openedCellNumber;}
+    public int getValue(int x, int y){return board[x][y].getValue();}
 }

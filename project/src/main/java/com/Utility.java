@@ -1,6 +1,6 @@
 package com;
 
-import com.backend.Board;
+import com.model.Board;
 
 public class Utility {
     public static boolean checkInBoard(int x, int y, Board board){
