@@ -10,7 +10,8 @@ import java.util.Queue;
 public class Logic {
     public static void choose(int x, int y, Board board){
         if (!Utility.checkInBoard(x,y,board) ||
-                board.checkOpen(x,y)){
+                board.isOpened(x,y) ||
+                board.isFlagged(x,y)){
             throw new InvalidMove();
         }
 
@@ -46,7 +47,7 @@ public class Logic {
                     int a = cell[0]+i;
                     int b = cell[1]+j;
                     if (!Utility.checkInBoard(a,b,board) ||
-                            board.checkOpen(a,b) ||
+                            board.isOpened(a,b) ||
                             board.isBomb(a,b)){
                         continue;
                     }

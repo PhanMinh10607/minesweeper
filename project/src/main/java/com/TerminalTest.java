@@ -11,11 +11,8 @@ public class TerminalTest {
 
     public static void main(String[] args){
 
-        Scanner scanner = new Scanner(System.in);
-
-        int height, width, bombNumber;
-
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
+            int height, width, bombNumber;
             height = scanner.nextInt();
             width = scanner.nextInt();
             bombNumber = scanner.nextInt();
@@ -29,19 +26,17 @@ public class TerminalTest {
             int y = scanner.nextInt();
             initialize.firstClick(x, y, board);
             int move = 2;
-            while (!board.isBomb(x,y)){
+            while (!board.isBomb(x, y)) {
                 displayBoard(board);
                 System.out.print("Move " + move + ": ");
                 x = scanner.nextInt();
                 y = scanner.nextInt();
-                Logic.choose(x,y,board);
+                Logic.choose(x, y, board);
                 move++;
 
             }
-        }catch (InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("you must type again");
-        }finally {
-            scanner.close();
         }
 
     }

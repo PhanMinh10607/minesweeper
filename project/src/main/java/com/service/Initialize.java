@@ -11,9 +11,8 @@ public class Initialize {
 
     public Board createBoard(int height, int width, int bombNumber) {
         if (bombNumber <= 0 || bombNumber >= height*width) {throw new InvalidBombNumber();}
-        Board board = new Board(height, width, bombNumber);
         //TODO: Notify to frontend
-        return board;
+        return new Board(height, width, bombNumber);
     }
 
     public void firstClick(int initialX, int initialY, Board board){

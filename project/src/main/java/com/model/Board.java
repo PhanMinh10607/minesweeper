@@ -12,7 +12,6 @@ public class Board {
     private Cell[][] board;
     private int move;
     private int openedCellNumber;
-    private Queue<int[]> bombCoordinate = new ArrayDeque<>();
 
      public Board(int height, int width, int bombNumber){
         this.height = height;
@@ -50,7 +49,8 @@ public class Board {
     public boolean isBomb(int x, int y){
          return board[x][y].getValue() == -1;
     }
-    public boolean checkOpen(int x, int y){return board[x][y].getOpened();}
+    public boolean isOpened(int x, int y){return board[x][y].isOpened();}
+    public boolean isFlagged(int x, int y){return board[x][y].isFlagged();}
     //getters
 
     public int getMove(){return move;}

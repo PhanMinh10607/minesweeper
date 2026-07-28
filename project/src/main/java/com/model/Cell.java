@@ -18,6 +18,6 @@ public class Cell {
 
     //getters
     public int getValue(){return value;}
-    public boolean getOpened(){return opened;}
-    public boolean flagged(){return flagged;}
+    public boolean isOpened(){return opened;}
+    public boolean isFlagged(){return flagged;}
 }
