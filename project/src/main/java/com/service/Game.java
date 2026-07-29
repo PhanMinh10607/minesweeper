@@ -1,19 +1,15 @@
-package com;
+package com.service;
 
 import com.model.Board;
-import com.service.Initialize;
-import com.service.Logic;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TerminalTest {
-
-    public static void main(String[] args){
+public class Game {
+    public static void start(int height, int width, int bombNumber, int initialX, int initialY){
 
         try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("height, width, bomb number:");
-            int height, width, bombNumber;
             height = scanner.nextInt();
             width = scanner.nextInt();
             bombNumber = scanner.nextInt();
@@ -39,9 +35,7 @@ public class TerminalTest {
         } catch (InputMismatchException e) {
             System.out.println("you must type again");
         }
-
     }
-
     public static void displayBoard(Board board) {
         for (int i = 0; i < board.getHeight(); i++) {
             for (int j = 0; j < board.getWidth(); j++) {

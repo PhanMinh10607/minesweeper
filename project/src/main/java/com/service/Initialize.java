@@ -37,7 +37,7 @@ public class Initialize {
                 for (int j = -1; j <= 1; j++){
                     int a = cell[0] + i;
                     int b = cell[1] + j;
-                    if (!Utility.checkInBoard(a,b,board) || (i == 0 && j == 0) || board.isBomb(i,j)) continue;
+                    if (!Utility.checkInBoard(a,b,board) || (i == 0 && j == 0) || board.isBomb(a,b)) continue;
                     board.increaseCellValue(a,b);
                 }
             }
