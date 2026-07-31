@@ -22,13 +22,13 @@
             <VBox alignment="CENTER" prefHeight="239.0" prefWidth="472.0" BorderPane.alignment="CENTER">
                <children>
                   <Pane prefHeight="28.0" prefWidth="472.0" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="EASY" textAlignment="CENTER" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ezHandle" prefHeight="38.0" prefWidth="95.0" text="EZ" textAlignment="CENTER" />
                   <Pane prefHeight="17.0" prefWidth="472.0" />
-                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="NORMAL" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#normalHandle" prefHeight="38.0" prefWidth="95.0" text="NORMAL" textAlignment="CENTER" />
                   <Pane prefHeight="17.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="HARD" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#hardHandle" prefHeight="38.0" prefWidth="95.0" text="HARD" textAlignment="CENTER" />
                   <Pane prefHeight="17.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="CUSTOM" textAlignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#customHandle" prefHeight="38.0" prefWidth="95.0" text="CUSTOM" textAlignment="CENTER" />
                </children>
             </VBox>
          </center>
