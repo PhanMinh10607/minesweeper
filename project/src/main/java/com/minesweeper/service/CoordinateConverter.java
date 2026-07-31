@@ -1,4 +1,4 @@
-package com.service;
+package com.minesweeper.service;
 
 public class CoordinateConverter {
     //TODO: convert clickedCoordinate to gridCoordinate

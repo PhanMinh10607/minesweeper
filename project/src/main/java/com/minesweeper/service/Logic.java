@@ -1,8 +1,8 @@
-package com.service;
+package com.minesweeper.service;
 
-import com.Utility;
-import com.exceptions.InvalidMove;
-import com.model.Board;
+import com.minesweeper.Utility;
+import com.minesweeper.exceptions.InvalidMove;
+import com.minesweeper.model.Board;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

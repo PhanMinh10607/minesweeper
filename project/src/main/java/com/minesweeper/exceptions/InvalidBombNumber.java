@@ -1,4 +1,4 @@
-package com.exceptions;
+package com.minesweeper.exceptions;
 
 public class InvalidBombNumber extends RuntimeException {
     public InvalidBombNumber() {

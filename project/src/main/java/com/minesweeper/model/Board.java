@@ -1,6 +1,4 @@
-package com.model;
-
-import java.util.*;
+package com.minesweeper.model;
 
 // 0 - 6 = safe
 // -1 = bomb

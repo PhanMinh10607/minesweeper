@@ -1,6 +1,6 @@
-package com;
+package com.minesweeper;
 
-import com.model.Board;
+import com.minesweeper.model.Board;
 
 public class Utility {
     public static boolean checkInBoard(int x, int y, Board board){

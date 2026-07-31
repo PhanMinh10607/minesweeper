@@ -1,6 +1,6 @@
-package com.service;
+package com.minesweeper.service;
 
-import com.model.Board;
+import com.minesweeper.model.Board;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

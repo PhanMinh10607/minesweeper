@@ -1,4 +1,4 @@
-package com.exceptions;
+package com.minesweeper.exceptions;
 
 public class InvalidMove extends RuntimeException {
     public InvalidMove() {

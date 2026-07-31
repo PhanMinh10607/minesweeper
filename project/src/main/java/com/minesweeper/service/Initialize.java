@@ -1,8 +1,8 @@
-package com.service;
+package com.minesweeper.service;
 
-import com.Utility;
-import com.exceptions.InvalidBombNumber;
-import com.model.Board;
+import com.minesweeper.Utility;
+import com.minesweeper.exceptions.InvalidBombNumber;
+import com.minesweeper.model.Board;
 
 import java.util.*;
 
