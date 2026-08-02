@@ -9,12 +9,6 @@ import java.util.*;
 public class Initialize {
     private Random random = new Random();
 
-    public Board createBoard(int height, int width, int bombNumber) {
-        if (bombNumber <= 0 || bombNumber >= height*width) {throw new InvalidBombNumber();}
-        //TODO: Notify to frontend
-        return new Board(height, width, bombNumber);
-    }
-
     public void firstClick(int initialX, int initialY, Board board){
         Queue<int[]> bombPlace = new ArrayDeque<>();
         for (int i = 0; i < board.getBombNumber(); i++){
